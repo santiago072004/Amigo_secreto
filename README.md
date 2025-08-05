@@ -1,4 +1,5 @@
-# Amigo_secreto
+# 🎁 Amigo Secreto 🎁
+
 Una aplicación web interactiva que permite realizar sorteos de "Amigo Secreto" de manera fácil y divertida. Los usuarios pueden añadir nombres a una lista, visualizar los participantes y realizar un sorteo aleatorio para descubrir quién será el amigo secreto.
 
 ---
