@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Android Permissions Configuration for Real-Time Translator App
+  
+  Add these permissions to your android/app/src/main/AndroidManifest.xml file
+  Place them outside the <application> tag but inside the <manifest> tag
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Essential Permissions -->
+    
+    <!-- Internet access for translation APIs -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <!-- Camera access for image translation (OCR) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    
+    <!-- Microphone access for voice translation -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    
+    <!-- Storage access for image picker and file operations -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" 
+                     android:maxSdkVersion="28" />
+    
+    <!-- Optional Permissions -->
+    
+    <!-- Location access for region-specific translations -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    
+    <!-- Wake lock for continuous voice translation -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <!-- Vibration for feedback -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    
+    <!-- Feature requirements (optional but recommended) -->
+    <uses-feature 
+        android:name="android.hardware.camera" 
+        android:required="false" />
+    <uses-feature 
+        android:name="android.hardware.camera.autofocus" 
+        android:required="false" />
+    <uses-feature 
+        android:name="android.hardware.microphone" 
+        android:required="false" />
+    
+    <application
+        android:label="Real-Time Translator"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+        
+        <!-- ML Kit dependency for OCR -->
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
+        
+        <!-- FileProvider for image picker -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.flutter_translator_app.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/flutter_translator_app_file_paths" />
+        </provider>
+        
+        <!-- Your activity configuration here -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme" />
+              
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        
+        <!-- Don't delete the meta-data below.
+             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+    
+    <!-- Queries for intent compatibility (Android 11+) -->
+    <queries>
+        <!-- Camera intents -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <!-- Gallery intents -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+    </queries>
+</manifest>
+
+<!-- 
+  Additional files needed:
+  
+  1. Create android/app/src/main/res/xml/flutter_translator_app_file_paths.xml:
+  
+  <?xml version="1.0" encoding="utf-8"?>
+  <paths xmlns:android="http://schemas.android.com/apk/res/android">
+      <cache-path name="cache" path="." />
+      <external-files-path name="external_files" path="." />
+      <external-cache-path name="external_cache" path="." />
+  </paths>
+  
+  2. Update android/app/build.gradle:
+  
+  android {
+      compileSdkVersion 34
+      
+      defaultConfig {
+          applicationId "com.example.flutter_translator_app"
+          minSdkVersion 21  // Required for ML Kit
+          targetSdkVersion 34
+          versionCode 1
+          versionName "1.0.0"
+      }
+      
+      buildTypes {
+          release {
+              signingConfig signingConfigs.debug
+          }
+      }
+  }
+-->

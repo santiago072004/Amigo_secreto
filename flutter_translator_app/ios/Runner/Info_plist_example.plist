@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- 
+  iOS Permissions Configuration for Real-Time Translator App
+  
+  Add these permissions to your ios/Runner/Info.plist file
+  Place them inside the <dict> tag
+-->
+
+<plist version="1.0">
+<dict>
+    <!-- App Configuration -->
+    <key>CFBundleDisplayName</key>
+    <string>Real-Time Translator</string>
+    <key>CFBundleName</key>
+    <string>translator_app</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    
+    <!-- Essential Permissions -->
+    
+    <!-- Camera permission for image translation (OCR) -->
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs camera access to capture images for text translation. You can translate text from photos, documents, signs, and more.</string>
+    
+    <!-- Photo library permission for selecting images -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs photo library access to select images for text translation. Choose photos containing text to translate.</string>
+    
+    <!-- Microphone permission for voice translation -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app needs microphone access for voice translation features. Speak in one language and get instant translation to another.</string>
+    
+    <!-- Speech recognition permission -->
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>This app needs speech recognition to convert your speech to text for translation. Your voice data is processed securely and not stored.</string>
+    
+    <!-- Optional Permissions -->
+    
+    <!-- Location permission for region-specific translations -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app may use your location to provide region-specific translations and improve translation accuracy for local dialects.</string>
+    
+    <!-- Background app refresh for conversation mode -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>audio</string>
+        <string>background-processing</string>
+    </array>
+    
+    <!-- Network Configuration -->
+    
+    <!-- Allow HTTP requests for translation APIs -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <!-- More secure alternative: specify allowed domains -->
+        <!-- 
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>translate.googleapis.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+            <key>api.cognitive.microsofttranslator.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+        </dict>
+        -->
+    </dict>
+    
+    <!-- App UI Configuration -->
+    
+    <!-- Supported interface orientations -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    
+    <!-- Status bar configuration -->
+    <key>UIStatusBarHidden</key>
+    <false/>
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+    
+    <!-- Launch screen configuration -->
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+    
+    <!-- Main storyboard -->
+    <key>UIMainStoryboardFile</key>
+    <string>Main</string>
+    
+    <!-- Required device capabilities -->
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>arm64</string>
+    </array>
+    
+    <!-- File sharing configuration -->
+    <key>UIFileSharingEnabled</key>
+    <true/>
+    <key>LSSupportsOpeningDocumentsInPlace</key>
+    <true/>
+    
+    <!-- Document types for file import -->
+    <key>CFBundleDocumentTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeName</key>
+            <string>Images</string>
+            <key>CFBundleTypeRole</key>
+            <string>Viewer</string>
+            <key>LSItemContentTypes</key>
+            <array>
+                <string>public.image</string>
+                <string>public.jpeg</string>
+                <string>public.png</string>
+            </array>
+        </dict>
+    </array>
+    
+    <!-- URL schemes for deep linking -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>translator.app.deeplink</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>translator</string>
+            </array>
+        </dict>
+    </array>
+    
+    <!-- Privacy and Security -->
+    
+    <!-- Indicate that the app doesn't use advertising identifier -->
+    <key>SKAdNetworkItems</key>
+    <array>
+        <!-- Add your ad network identifiers here if using ads -->
+    </array>
+    
+    <!-- App Transport Security exceptions for specific domains -->
+    <!-- Uncomment and configure as needed -->
+    <!--
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>translate.googleapis.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.0</string>
+            </dict>
+        </dict>
+    </dict>
+    -->
+    
+    <!-- Flutter-specific configuration -->
+    <key>io.flutter.embedded_views_preview</key>
+    <true/>
+    
+    <!-- Optional: Configure for better performance -->
+    <key>CADisableMinimumFrameDurationOnPhone</key>
+    <true/>
+    
+</dict>
+</plist>
+
+<!-- 
+  Additional iOS Configuration Notes:
+  
+  1. Deployment Target:
+     - Set minimum iOS version to 11.0 or higher in Xcode
+     - ML Kit requires iOS 10.0+, but newer versions recommended
+  
+  2. Swift Version:
+     - Ensure your project uses Swift 5.0 or later
+  
+  3. Bitcode:
+     - Disable bitcode if you encounter build issues with ML Kit
+     - Set ENABLE_BITCODE = NO in Build Settings
+  
+  4. Team and Signing:
+     - Configure your development team in Xcode
+     - Set up code signing for device testing
+  
+  5. Privacy Manifest (iOS 17+):
+     - Consider adding PrivacyInfo.xcprivacy file for iOS 17 compliance
+     - Declare usage of sensitive APIs
+  
+  6. App Store Guidelines:
+     - Ensure permission descriptions clearly explain usage
+     - Follow Apple's Human Interface Guidelines
+     - Test on various iOS versions and device sizes
+-->
